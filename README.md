@@ -71,3 +71,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Obs
+Create by Dani Leão on Rocketseat Youtube.
+Link: https://www.youtube.com/watch?v=cBIUOL6MFXw&t=65s
