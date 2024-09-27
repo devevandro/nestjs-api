@@ -22,7 +22,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: arn:aws:iam::905418475864:role/ecr-git
-        aws-regiom: us-east-2
+        aws-region: us-east-2
 
     - name: Login to ECR
       id: login-ecr
