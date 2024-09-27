@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: read 
 
     steps:
     - uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: arn:aws:iam::905418475864:role/ecr-git
+        role-to-assume: arn:aws:iam::905418475864:role/ecr-role
         aws-region: us-east-2
 
     - name: Login to ECR
@@ -30,7 +30,7 @@ jobs:
 
     - name: Build and Push image
       run: |
-       docker build -t 905418475864.dkr.ecr.us-east-1.amazonaws.com/apps:${{ github.sha }} .
-       docker push 905418475864.dkr.ecr.us-east-1.amazonaws.com/apps:${{ github.sha }}
+       docker build -t 905418475864.dkr.ecr.us-east-1.amazonaws.com/user-app:${{ github.sha }} .
+       docker push 905418475864.dkr.ecr.us-east-1.amazonaws.com/user-app:${{ github.sha }}
 
     
