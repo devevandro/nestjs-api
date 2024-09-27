@@ -1,0 +1,33 @@
+name: CI - user app
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::905418475864:role/ecr-git
+        aws-regiom: us-east-2
+
+    - name: Login to ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build and Push image
+      run: |
+       docker build -t 905418475864.dkr.ecr.us-east-1.amazonaws.com/apps:${{ github.sha }} .
+       docker push 905418475864.dkr.ecr.us-east-1.amazonaws.com/apps:${{ github.sha }}
+
+    
