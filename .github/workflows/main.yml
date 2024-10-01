@@ -19,7 +19,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::905418475864:role/api-role
+          role-to-assume: arn:aws:iam::role/api-role
           aws-region: us-east-1
 
       - name: Login to ECR
@@ -28,8 +28,8 @@ jobs:
 
       - name: Build and Push image
         run: |
-          docker build -t 905418475864.dkr.ecr.us-east-1.amazonaws.com/live-youtube-api:${{ github.sha }} .
-          docker push 905418475864.dkr.ecr.us-east-1.amazonaws.com/live-youtube-api:${{ github.sha }}
+          docker build -t dkr.ecr.us-east-1.amazonaws.com/live-youtube-api:${{ github.sha }} .
+          docker push dkr.ecr.us-east-1.amazonaws.com/live-youtube-api:${{ github.sha }}
 
       - name: Deploy to App Runner Image
         id: deploy_apprunner
@@ -37,7 +37,7 @@ jobs:
         with:
           service: app-runner-git-deploy-service
           image: ${{ steps.login_ecr.outputs.image }}
-          access-role-arn: arn:aws:iam::905418475864:role/aws-service-role/apprunner.amazonaws.com/AWSServiceRoleForAppRunner
+          access-role-arn: arn:aws:iam::role/aws-service-role/apprunner.amazonaws.com/AWSServiceRoleForAppRunner
           region: us-east-1
           cpu: 1
           memory: 1
