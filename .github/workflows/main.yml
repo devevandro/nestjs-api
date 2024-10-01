@@ -34,15 +34,10 @@ jobs:
       - name: Deploy to App Runner Image
         id: deploy_apprunner
         uses: awslabs/amazon-app-runner-deploy@main
-        env:
-          SERVER_PORT: 3000
-          SECRET_ENV: secret_env
         with:
           service: app-runner-git-deploy-service
-          source-connection-arn: arn:aws:apprunner:us-east-1:905418475864:connection/github-connection/e9b858efe39641e0b77d41969678db27
           image: ${{ steps.login_ecr.outputs.image }}
           access-role-arn: arn:aws:iam::905418475864:role/aws-service-role/apprunner.amazonaws.com/AWSServiceRoleForAppRunner
-          port: 3000
           region: us-east-1
           cpu: 1
           memory: 1
