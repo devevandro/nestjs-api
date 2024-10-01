@@ -33,7 +33,7 @@ jobs:
 
       - name: Deploy to App Unner Image
         id: deploy_apprunner
-        uses: aws/labs/amazon-app-runner-deploy@main
+        uses: awslabs/amazon-app-runner-deploy@main
         env:
           SERVER_PORT: 3000
           SECRET_ENV: secret_env
