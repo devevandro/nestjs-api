@@ -31,7 +31,7 @@ jobs:
           docker build -t 905418475864.dkr.ecr.us-east-1.amazonaws.com/live-youtube-api:${{ github.sha }} .
           docker push 905418475864.dkr.ecr.us-east-1.amazonaws.com/live-youtube-api:${{ github.sha }}
 
-      - name: Deploy to App Unner Image
+      - name: Deploy to App Runner Image
         id: deploy_apprunner
         uses: awslabs/amazon-app-runner-deploy@main
         env:
@@ -39,6 +39,7 @@ jobs:
           SECRET_ENV: secret_env
         with:
           service: app-runner-git-deploy-service
+          source-connection-arn: arn:aws:apprunner:us-east-1:905418475864:connection/github-connection/e9b858efe39641e0b77d41969678db27
           image: ${{ steps.login_ecr.outputs.image }}
           access-role-arn: arn:aws:iam::905418475864:role/aws-service-role/apprunner.amazonaws.com/AWSServiceRoleForAppRunner
           port: 3000
