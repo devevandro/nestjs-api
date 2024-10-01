@@ -9,4 +9,8 @@ export class AppService {
   getUsers(): string {
     return 'Listagem de usuários';
   }
+
+  healthCheck(): string {
+    return 'API is running!';
+  }
 }
